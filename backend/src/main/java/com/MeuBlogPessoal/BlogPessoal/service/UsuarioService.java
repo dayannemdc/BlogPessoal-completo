@@ -57,6 +57,8 @@ public class UsuarioService {
 				usuarioParaAutenticar.setIdUsuario(usuarioExistente.getIdUsuario());
 				usuarioParaAutenticar.setNome(usuarioExistente.getNome());
 				usuarioParaAutenticar.setSenha(usuarioExistente.getSenha());
+				usuarioParaAutenticar.setFoto(usuarioExistente.getFoto());
+				usuarioParaAutenticar.setTipo(usuarioExistente.getTipo());
 				return Optional.ofNullable(usuarioParaAutenticar); // Usuario Credenciado
 			} else {
 				return Optional.empty();
