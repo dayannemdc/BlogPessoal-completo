@@ -28,7 +28,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "criador", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"criador"})
 	private List<Postagem> minhasPostagens = new ArrayList<>();
-	
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
@@ -61,14 +61,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public List<Postagem> getMinhasPostagens() {
-		return minhasPostagens;
-	}
-
-	public void setMinhasPostagens(List<Postagem> minhasPostagens) {
-		this.minhasPostagens = minhasPostagens;
-	}
-
 	public String getFoto() {
 		return foto;
 	}
@@ -84,6 +76,13 @@ public class Usuario {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
+	public List<Postagem> getMinhasPostagens() {
+		return minhasPostagens;
+	}
+
+	public void setMinhasPostagens(List<Postagem> minhasPostagens) {
+		this.minhasPostagens = minhasPostagens;
+	}
 	
 }
