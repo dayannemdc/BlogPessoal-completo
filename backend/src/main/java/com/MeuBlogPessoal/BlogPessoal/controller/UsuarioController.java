@@ -111,13 +111,13 @@ public class UsuarioController {
 	}*/
 	
 	@PutMapping("/atualizar")
-	public ResponseEntity<Object> atualizarUsuario(@Valid @RequestBody Usuario usuarioParaAtualizar){
-		Optional<Object> objetoOptional = servicos.atualizarUsuario(usuarioParaAtualizar);
+	public ResponseEntity<Object> atualizarUsuario(@Valid @RequestBody UsuarioDTO usuarioParaAtualizar){
+		Optional<?> objetoOptional = servicos.atualizarUsuario(usuarioParaAtualizar);
 		
-		if (objetoOptional.isEmpty()) {
-			return ResponseEntity.status(400).build();
+		if (objetoOptional.isPresent()) {
+			return ResponseEntity.status(201).body(objetoOptional.get());
 		}else {
-			return ResponseEntity.status(201).body(repositorio.save(usuarioParaAtualizar));
+			return ResponseEntity.status(400).build();
 		}
 	}
 

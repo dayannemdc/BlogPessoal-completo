@@ -35,11 +35,18 @@ public class UsuarioService {
 		});
 	}
 	
-	public Optional<Object> atualizarUsuario (Usuario usuarioParaAtualizar) {
-		return repositorio.findByEmail(usuarioParaAtualizar.getEmail()).map(usuarioExistente ->{
-			return Optional.empty();
+	public Optional<?> atualizarUsuario (UsuarioDTO usuarioParaAtualizar) {
+		return repositorio.findById(usuarioParaAtualizar.getIdUsuario()).map(usuarioExistente ->{
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String senhaCriptografada = encoder.encode(usuarioParaAtualizar.getSenha());
+			usuarioParaAtualizar.setSenha(senhaCriptografada);
+			usuarioParaAtualizar.setNome(usuarioExistente.getNome());
+			usuarioParaAtualizar.setFoto(usuarioExistente.getFoto());
+			usuarioParaAtualizar.setTipo(usuarioExistente.getTipo());
+			usuarioParaAtualizar.setEmail(usuarioExistente.getEmail());
+			return Optional.ofNullable(repositorio.save(usuarioExistente));
 		}).orElseGet(()->{
-			return Optional.ofNullable(repositorio.save(usuarioParaAtualizar));
+			return Optional.empty();
 		});
 	}
 	

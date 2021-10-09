@@ -26,9 +26,6 @@ export class PostagemService {
     return this.http.post<Postagem>('https://blog-pessoal-dayanne.herokuapp.com/api/v1/postagem/salvar', postagem, this.token)
   }
 
-  getByIdUser(id: number): Observable<User>{
-    return this.http.get<User>(`https://blog-pessoal-dayanne.herokuapp.com/api/v1/usuario/${id}`, this.token)
-  }
 
   getByIdPostagem(id: number): Observable<Postagem>{
     return this.http.get<Postagem>(`https://blog-pessoal-dayanne.herokuapp.com/api/v1/postagem/${id}`, this.token)
